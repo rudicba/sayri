@@ -10,6 +10,12 @@ gem 'sqlite3'
 # SEE: http://railsapps.github.io/twitter-bootstrap-rails.html
 gem 'bootstrap-sass', '~> 2.3.2.0'
 
+# https://github.com/activeldap/activeldap
+gem 'activeldap', :require => 'active_ldap/railtie'
+
+# https://github.com/ruby-ldap/ruby-net-ldap
+gem 'net-ldap'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
