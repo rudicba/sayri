@@ -3,7 +3,7 @@
 
 There are a lot of web ldap administrator such as phpldapamin or apacheldapadmin, but almost everyone are orientated for system administrator. Sayri pretend to simplify the administration of and overall network but orientate to standard user. So you can install it and tell you lazy boss to handle resource as a master administrator.
 
-== What is not Sayri
+== What is NOT Sayri
 Sayri is not a LDAP administrator, it just use LDAP as backend for handle Unix resource as: users, groups, hosts, sudoers.
 
 == What is Sayri
