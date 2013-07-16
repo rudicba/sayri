@@ -3,18 +3,18 @@ development:
   port: 389 
   base: dc=localhost 
   bind_dn: cn=admin,dc=localhost 
-  password: secret 
+  password: mysecret 
   
 test:
   host: 127.0.0.1
   base: dc=test,dc=local,dc=net
   bind_dn: cn=admin,dc=local,dc=net
-  password: secret
+  password: mysecret
 
 production:
   host: 127.0.0.1
   method: :tls
   base: dc=production,dc=local,dc=net
   bind_dn: cn=admin,dc=local,dc=net
-  password: secret
+  password: mysecret
 
