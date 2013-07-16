@@ -1,4 +1,4 @@
-== Welcome to Sayri: Simple ldap administration for Unix resources
+== Sayri: Simple ldap administration for Unix resources
 
 There are a lot of web ldap administrator such as phpldapamin or apacheldapadmin, but almost everyone are orientated for system administrator. Sayri pretend to simplify the administration of and overall network but orientate to standard user. So you can install it and tell you lazy boss to handle resource as a master administrator.
 
