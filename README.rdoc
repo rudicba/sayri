@@ -1,4 +1,5 @@
-== Sayri: Simple LDAP administration for Unix resources
+= Sayri
+== Simple LDAP administrator for Unix resources
 
 There are a lot of web ldap administrator such as phpldapamin or apacheldapadmin, but almost everyone are orientated for system administrator. Sayri pretend to simplify the administration of and overall network but orientate to standard user. So you can install it and tell you lazy boss to handle resource as a master administrator.
 
@@ -17,6 +18,6 @@ Sayri should run on most Unix, Linux, Mac, Mac Server and Windows systems as lon
 
 It should work on ruby 1.9.x and 2.0.0, ruby 1.8.x is not supported
 
-== Getting Started
+== License
 
-== Description of Contents
+Sayri is released under the BSD 3-Clause License[http://opensource.org/licenses/BSD-3-Clause]
