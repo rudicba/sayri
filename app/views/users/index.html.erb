@@ -1,0 +1,41 @@
+<%= form_tag users_path, :html => {:class => "form-search"}, :method => 'get' do %>
+  <div class="input-append">
+    <%= text_field_tag :search, params[:search], :class=> "span2", :id => "appendedInputButton", :type =>"text" %>
+    <%= button_tag "Search", :name => nil, :class => "btn"  %>
+  </div>
+<% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>username</th>
+      <th>cn</th>
+      <th>uidNumber</th>
+      <th>gidNumber</th>
+      <th><div class="text-center">action</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @users.empty? %>
+      <td colspan="5">
+        No matching records found
+      </td>
+    <%end%>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= link_to u.uid, u%></td>
+        <td><%= u.cn %></td>
+        <td><%= u.uidnumber %></td>
+        <td><%= u.gidnumber %></td>
+        <td> 
+          <div class="text-center">
+            <%= link_to '', edit_user_path(u), :rel => "tooltip", 
+                                               :title => "Edit User", :class => 'icon-edit' %>
+            <%= link_to '', u, method: :delete, data: { confirm: 'Are you sure?' }, 
+                               :rel => "tooltip", :title => "Delete User", :class => 'icon-trash' %>
+          </div>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

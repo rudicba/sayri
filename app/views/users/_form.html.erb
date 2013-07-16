@@ -1,0 +1,35 @@
+<%= form_for(@user, :html => {:class => "form-horizontal"}, :builder => BootstrapFormBuilder) do |f| %>
+	<legend><%= legend%></legend>
+  <ul class="nav nav-tabs">
+    <li class="<%= 'active' if active_tab?('inetorgperson') || active_tab?('') %>">
+      <a href="#inetorgperson", data-toggle="tab">inetOrgPerson</a>
+    </li>
+    <li class= "<%= 'active' if active_tab?('posixaccount') %>">
+      <a href="#posixaccount", data-toggle="tab">posixAccount</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane <%= 'active' if (active_tab?('inetorgperson') || active_tab?('')) %>" id="inetorgperson">
+        <%= render 'inetorgperson', :f => f %>
+    </div>
+    <div class="tab-pane <%= 'active' if active_tab?('posixaccount') %>" id="posixaccount">
+        <%= render 'posixaccount', :f => f %>
+    </div>
+  </div>
+  <hr class="bs-docs-separator"></hr>
+	<%= f.submit "Send", :class => "btn pull-right" %> 
+<% end %>
+
+<script type="text/javascript">
+  $('#user_sn, #user_gn').on('keyup keypress', function() { 
+    var gn = $('#user_gn').val(),
+        sn = $('#user_sn').val();
+
+    var cn = gn + ' ' + sn;
+    var uid = (gn.charAt(0) + sn).toLowerCase()
+    $('#user_cn').val(cn);
+    $('#user_uid').val(uid);
+    $('#user_homedirectory').val('/home/' + uid);
+  }); 
+</script>

@@ -1,0 +1,45 @@
+<% if notice %>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
+<legend><h3><%= @user.cn %></h3></legend>
+<h4><p class="muted"><%= @user.description %></h4></p>
+<br>
+<table class="table table-striped">
+	<tbody>
+		<tr>
+  		<td class ="muted">Mail:</td>
+  		<td><i class="icon-envelope"></i><a href="mailto:<%= @user.mail %>"	> <%= @user.mail %></td>
+  	</tr>
+		<tr>
+			<td class ="muted">Mobile:</td>
+			<td><%= @user.mobile %></td>
+		</tr>
+		<tr>
+			<td class ="muted">Uid:</td>
+			<td><i class="icon-user" ></i><a href="#employees/1"> <%= @user.uid %></a></td>
+		</tr>
+  	<tr>
+  		<td class ="muted">UidNumber:</td>
+  		<td><%= @user.uidnumber %></td>
+  	</tr>
+  	<tr>
+  		<td class ="muted">GidNumber:</td>
+  		<td><%= @user.gidnumber %></td>
+  	</tr>
+  	<tr>
+  		<td class ="muted">HomeDirectory:</td>
+  		<td><%= @user.homedirectory %></td>
+  	</tr>
+  	<tr>
+  		<td class ="muted">UserPassword:</td>
+  		<td><%= if @user.userpassword then 'Set' else 'No password' end%></td>
+  	</tr>
+  </body>
+</table>
+<p class="text-right">
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Back', users_path %>
+</p>
