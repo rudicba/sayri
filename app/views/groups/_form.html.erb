@@ -18,6 +18,6 @@
   </div>
   <hr class="bs-docs-separator"></hr>
   <%= f.submit "send", :class => "btn pull-right" %> 
-  <!-- Si no se selecciona ningun miembro se devuelve una lista vacia -->
+  <!-- Empty list if zero member selected -->
   <%= hidden_field_tag "group[memberUid][]" %>
 <% end %>

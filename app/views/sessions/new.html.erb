@@ -1,21 +1,21 @@
 <%= form_for(:session, url: sessions_path) do |f| %>
-    <div class="container">
-        <div class="row">
-            <div class="span4 offset4 well">
-                <legend>Sign In</legend>
+  <div class="container">
+    <div class="row">
+        <div class="span4 offset4 well">
+            <legend>Sign In</legend>
 
-                <% flash.each do |name, msg| -%>
-                    <div class="alert alert-error">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
-                       <%= msg %>
-                    </div>
-                <% end %>
+            <% flash.each do |name, msg| -%>
+                <div class="alert alert-error">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                   <%= msg %>
+                </div>
+            <% end %>
 
-                <%= f.text_field :uid, :class => "span4", :placeholder => "Username" %>
-                <%= f.password_field :password, :class => "span4", :placeholder => "Password" %>
+            <%= f.text_field :uid, :class => "span4", :placeholder => "Username" %>
+            <%= f.password_field :password, :class => "span4", :placeholder => "Password" %>
 
-                <%= f.submit "Sign in", :class => "btn btn-info btn-block " %>
-            </div>
+            <%= f.submit "Sign in", :class => "btn btn-info btn-block " %>
         </div>
     </div>
+  </div>
 <%end%>
