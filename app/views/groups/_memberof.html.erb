@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Member</th>
+      <th>username</th>
+      <th>commonname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td>
+          <label class="checkbox">
+            <!-- group[memberUid]["user1","user5", "user7"] --> 
+            <%= check_box_tag "group[memberUid][]", u.id, @group.members.include?(u) %>
+          </label>
+        </td>
+        <td> <%= u.uid %> </td>
+        <td> <%= u.cn %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

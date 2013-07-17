@@ -1,0 +1,24 @@
+<% if notice %>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<legend><h3><%= @group.id %></h3></legend>
+
+<h4><p class="muted"><%= @group.description %></h4></p>
+<br>
+
+<table class="table table-striped">
+	<tbody>
+		<tr>
+			<td class ="muted">Gidnumber:</td>
+			<td><%= @group.gidnumber %></td>
+		</tr>
+  </tbody>
+</table>
+<p class="text-right">
+	<%= link_to 'Edit', edit_group_path(@group) %> |
+	<%= link_to 'Back', groups_path %>
+</p>

@@ -1,0 +1,23 @@
+<%= form_for(@group, :html => {:class => "form-horizontal"}, :builder => BootstrapFormBuilder) do |f| %>
+	<legend><%= legend %></legend>
+  <ul class="nav nav-tabs">
+    <li class="<%= 'active' if (params[:tab] == 'posixGroup' || !params[:tab]) %>">
+      <a href="#posixGroup", data-toggle="tab">posixGroup</a>
+    </li>
+    <li class= "<%= 'active' if params[:tab] == 'memberOf' %>">
+      <a href="#memberOf", data-toggle="tab">memberOf</a>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <div class="<%= if (params[:tab] == 'posixGroup' || !params[:tab]) then 'tab-pane active'  else 'tab-pane' end%>" id="posixGroup">
+        <%= render 'posixgroup', :f => f %>
+    </div>
+    <div class="<%= if params[:tab] == 'memberOf' then 'tab-pane active'  else 'tab-pane' end%>" id="memberOf">
+        <%= render 'memberof', :f => f %>
+    </div>
+  </div>
+  <hr class="bs-docs-separator"></hr>
+  <%= f.submit "send", :class => "btn pull-right" %> 
+  <!-- Si no se selecciona ningun miembro se devuelve una lista vacia -->
+  <%= hidden_field_tag "group[memberUid][]" %>
+<% end %>

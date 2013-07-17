@@ -9,7 +9,7 @@ class User < ActiveLdap::Base
   validates     :uidnumber, :gidnumber, :presence => true, 
                 :numericality => { :only_integer => true }
 
-  # Search a user by a UID
+  # Search users by a UID
   def self.id_search(search)
     search = search.to_s
     User.find(:all, :attribute => 'uid', :value => "#{search}*")

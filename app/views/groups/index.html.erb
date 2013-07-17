@@ -1,0 +1,46 @@
+<% if notice %>
+	<div class="alert alert-success">
+		<button type="button" class="close" data-dismiss="alert">&times;</button>
+		<%= notice %>
+	</div>
+<% end %>
+
+<%= form_tag groups_path, :html => {:class => "form-search"}, :method => 'get' do %>
+  <div class="input-append">
+    <%= text_field_tag :search, params[:search], :class=> "span2", :id => "appendedInputButton", :type =>"text" %>
+    <%= button_tag "Search", :name => nil, :class => "btn"  %>
+  </div>
+<% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>cn</th>
+      <th>description</th>
+      <th>gidnumber</th>
+      <th><div class="text-center">action</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @groups.empty? %>
+      <td colspan="4">
+        No matching records found
+      </td>
+    <%end%>
+    <% @groups.each do |g| %>
+      <tr>
+        <td><%= link_to g.id, g%></td>
+        <td><%= g.description %></td>
+        <td><%= g.gidnumber %></td>
+        <td> 
+          <div class="text-center">
+            <%= link_to '', edit_group_path(g), :rel => "tooltip", 
+                                                :title => "Edit Group", :class => 'icon-edit' %>
+            <%= link_to '', g, method: :delete, data: { confirm: 'Are you sure?' }, 
+                               :rel => "tooltip", :title => "Delete Group", :class => 'icon-trash' %>
+          </div>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

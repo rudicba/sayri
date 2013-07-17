@@ -1,0 +1,27 @@
+<% content_for :content do %>
+	<header id="overview" class="jumbotron subhead">
+		<div class="container">
+			<h1>Groups</h1>
+   	</div>
+	</header>
+		
+	<div class="container">
+		<div class="row">
+			<div class="span3">
+				<ul class="nav nav-list affix-top">
+					<li class="<%= 'active' if active_action?('index') %>">
+						<%= link_to "Groups", groups_path %>
+					</li>
+					<li class="<%= 'active' if active_action?('new') %>"> 
+						<%= link_to "New Group", new_group_path %> 
+					</li>
+				</ul>
+			</div>	
+			<div class="span9">
+				<%= yield %>
+			</div>
+		</div>
+	</div> 
+<% end %>
+
+<%= render :file => 'layouts/application' %>

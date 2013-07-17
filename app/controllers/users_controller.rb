@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_filter :set_title
   before_filter :correct_user,  only: [:show, :edit, :update]
   skip_filter   :admin_user, only: [:show, :edit, :update]
    
