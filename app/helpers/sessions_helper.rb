@@ -29,8 +29,8 @@ module SessionsHelper
   # True if user is in admin group
   def admin?
     current_user.groups.member? Group.find('Sayri')
-    #rescue ActiveLdap::EntryNotFound
-      #false
+    rescue ActiveLdap::EntryNotFound
+      false
   end
 
   # Logout current user
