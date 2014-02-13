@@ -2,6 +2,7 @@ Sayri::Application.routes.draw do
 
   resources :users
   resources :groups
+  resources :sudoers
   resources :hosts
   resources :sessions, only: [:new, :create, :destroy]
 
