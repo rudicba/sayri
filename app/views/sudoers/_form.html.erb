@@ -1,0 +1,13 @@
+<%= form_for(@sudoer, :html => {:class => "form-horizontal"}, :builder => BootstrapFormBuilder) do |f| %>
+  <legend><%= legend %></legend>
+
+  <%= f.text_field :cn, :placeholder => "Rulename" %>
+  <%= f.text_field :description, :placeholder => "Short descritption..." %>
+  <%= f.text_field :sudoUser, :placeholder => "User" %>
+  <%= f.text_field :sudoHost, :placeholder => "Host" %>
+  <%= f.text_field :sudoCommand, :placeholder => "Command" %>
+  <%= f.text_field :sudoOption, :placeholder => "Options" %>
+
+  <hr class="bs-docs-separator"></hr>
+  <%= f.submit "send", :class => "btn pull-right" %> 
+<% end %>

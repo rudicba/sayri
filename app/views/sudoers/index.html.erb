@@ -1,0 +1,45 @@
+<%= form_tag sudoers_path, :html => {:class => "form-search"}, :method => 'get' do %>
+  <div class="input-append">
+    <%= text_field_tag :search, params[:search], :class=> "span2", :id => "appendedInputButton", :type =>"text" %>
+    <%= button_tag "Search", :name => nil, :class => "btn"  %>
+  </div>
+<% end %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>cn</th>
+      <th>description</th>
+      <th>sudoUser</th>
+      <th>sudoHost</th>
+      <th>sudoCommand</th>
+      <th>sudoOption</th>
+      <th><div class="text-center">action</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @sudoers.empty? %>
+      <td colspan="5">
+        No matching records found
+      </td>
+    <%end%>
+    <% @sudoers.each do |s| %>
+      <tr>
+        <td><%= link_to s.cn, s%></td>
+        <td><%= s.description %></td>
+        <td><%= s.sudoUser %></td>
+        <td><%= s.sudoHost %></td>
+        <td><%= s.sudocommand %></td>
+        <td><%= s.sudoOption %></td>
+        <td> 
+          <div class="text-center">
+            <%= link_to '', edit_sudoer_path(s), :rel => "tooltip", 
+                                               :title => "Edit Sudoer", :class => 'icon-edit' %>
+            <%= link_to '', s, method: :delete, data: { confirm: 'Are you sure?' }, 
+                               :rel => "tooltip", :title => "Delete Sudoer", :class => 'icon-trash' %>
+          </div>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
