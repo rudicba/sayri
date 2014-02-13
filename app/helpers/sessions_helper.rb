@@ -28,7 +28,8 @@ module SessionsHelper
 
   # True if user is in admin group
   def admin?
-    current_user.groups.member? Group.find('Sayri')
+    #FIXME: Poner el grupo de admin en un archivo de configuracion
+    current_user.groups.member? Group.find('ldap-admin')
     rescue ActiveLdap::EntryNotFound
       false
   end
