@@ -33,11 +33,15 @@
   		<td class ="muted">HomeDirectory:</td>
   		<td><%= @user.homedirectory %></td>
   	</tr>
+    <tr>
+      <td class ="muted">LoginShell:</td>
+      <td><%= @user.loginshell %></td>
+    </tr>
   	<tr>
   		<td class ="muted">UserPassword:</td>
   		<td><%= if @user.userpassword then 'Set' else 'No password' end%></td>
   	</tr>
-  </body>
+  </tbody>
 </table>
 <p class="text-right">
 	<%= link_to 'Edit', edit_user_path(@user) %> |
