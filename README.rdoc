@@ -6,8 +6,8 @@ There are a lot of web ldap administrator such as phpldapamin or apacheldapadmin
 == What is Sayri
 
 The idea behind Sayri is to facilitate the administration of resources in a Unix / Linux network. For be more specific it will help you to administrate everything that can be in /etc/nsswitch.conf file. Such as users,groups,host,network, etc.
-Sayri is not a LDAP administrator, it just use LDAP as backend for handle Unix resource as: users, groups, hosts, sudoers.
 
+Sayri is not a LDAP administrator, it just use LDAP as backend for handle Unix resource as: users, groups, hosts, sudoers.
 
 == Requirements
 
