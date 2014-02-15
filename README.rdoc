@@ -16,7 +16,21 @@ Sayri should run on most Unix, Linux, Mac, Mac Server and Windows systems as lon
 
 === Ruby interpreter
 
-It should work on ruby 1.9.x and 2.0.0, ruby 1.8.x is not supported
+It should work on ruby 1.9.x and 2.x, ruby 1.8.x is not supported.
+
+== HowTo
+
+=== Install Ruby using rvm
+
+ $ \curl -sSL https://get.rvm.io | sudo bash -s stable
+ $ source /etc/profile
+ $ sudo rvm install 2.1.0
+ 
+=== Clone Sayri
+
+ $ cd /usr/local/www
+ $ git clone https://github.com/rudicba/sayri.git
+ $ cd sayri
 
 == License
 
