@@ -30,6 +30,30 @@ It should work on ruby 1.9.x and 2.x, ruby 1.8.x is not supported.
  $ cd /usr/local/www
  $ git clone https://github.com/rudicba/sayri.git
  $ cd sayri
+ $ sudo bundle install
+ 
+Some system dependencies are required to run "bundle install". Like: gmake and other
+
+FreeBSD Specific:
+
+Remplace therubyracer in Gemfile with:
+ gem 'therubyracer-freebsd', '0.11.1p2', :platforms => :ruby
+  
+Run bundle:
+ $ sudo CONFIGURE_ARGS=”with-sqlite3-dir=/usr/local” bundle install
+ 
+=== Configure Sayri
+
+Copy examples:
+ $ cp config/database.yml.example config/database.yml
+ $ cp config/ldap.yml.example config/ldap.yml
+ 
+Edit and configure examples:
+ $ vi config/database.yml
+ $ vi config/ldap.yml
+ 
+Migrate database:
+ $ rake db:migrate
 
 == License
 
