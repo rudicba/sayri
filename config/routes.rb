@@ -4,6 +4,12 @@ Sayri::Application.routes.draw do
   resources :groups
   resources :sudoers
   resources :hosts
+  resources :condors do
+    collection do
+      get :start
+      get :stop
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   root :to => 'sessions#new'
