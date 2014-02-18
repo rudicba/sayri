@@ -1,0 +1,10 @@
+<%= form_for(@host, :html => {:class => "form-horizontal"}, :builder => BootstrapFormBuilder) do |h| %>
+  <legend><%= legend %></legend>
+
+  <%= h.text_field :cn, :placeholder => "hostname" %>
+  <%= h.text_field :description, :placeholder => "description" %>
+  <%= h.text_field :ipHostNumber, :placeholder => "IP(192.168.0.x)" %>
+
+  <hr class="bs-docs-separator"></hr>
+  <%= h.submit "send", :class => "btn pull-right" %> 
+<% end %>

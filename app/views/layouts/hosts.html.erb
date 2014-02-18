@@ -1,0 +1,27 @@
+<% content_for :content do %>
+	<header id="overview" class="jumbotron subhead">
+		<div class="container">
+			<h1>Hosts</h1>
+    	</div>
+	</header>
+		
+	<div class="container">
+		<div class="row">
+			<div class="span3 bs-docs-sidebar">
+				<ul class="nav nav-list bs-docs-sidenav affix-top">
+					<li class="<%= 'active' if active_action?('index') %>">
+						<%= link_to "Hosts", hosts_path %>
+					</li>
+					<li class="<%= 'active' if active_action?('new') %>">
+						<%= link_to "New Host", new_host_path %>
+					</li>
+				</ul>
+			</div>
+			<div class="span9">
+				<%= yield %>
+			</div>
+		</div>
+	</div> 
+<% end %>
+
+<%= render :file => 'layouts/application' %>
