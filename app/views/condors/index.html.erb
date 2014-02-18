@@ -1,3 +1,4 @@
+<legend>Watched hosts</legend>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -12,7 +13,9 @@
         No matching records found
       </td>
     <%end%>
+
     <% @hosts.each do |h| %>
+    <% if @watched.include?(h.cn) %>
       <tr>
         <% if @hrun.include?(h.cn) %>
           <td><span class="icon-ok"></span></td>
@@ -22,11 +25,61 @@
         <td><%= h.cn %></td>
         <td> 
           <div class="text-center">
+            <% if @watched.include?(h.cn) %>
+              <%= link_to '', unwatch_condors_path(h.cn), :class => 'icon-eye-close' %>
+            <% else %>
+              <%= link_to '', watch_condors_path(h.cn), :class => 'icon-eye-open' %>
+            <% end %>
             <%= link_to '', start_condors_path(h.cn), :class => 'icon-play' %>
             <%= link_to '', stop_condors_path(h.cn),:class => 'icon-stop' %>
           </div>
         </td>
       </tr>
+<%end%>
     <%end%>
+
+  </tbody>
+</table>
+
+<legend>No Watched hosts</legend>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>status</th>
+      <th>cn</th>
+      <th><div class="text-center">action</div></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @hosts.empty? %>
+      <td colspan="2">
+        No matching records found
+      </td>
+    <%end%>
+
+    <% @hosts.each do |h| %>
+    <% if @watched.exclude?(h.cn) %>
+      <tr>
+        <% if @hrun.include?(h.cn) %>
+          <td><span class="icon-ok"></span></td>
+        <% else %>
+          <td><span class="icon-remove"></span></td>
+        <% end %>
+        <td><%= h.cn %></td>
+        <td> 
+          <div class="text-center">
+            <% if @watched.include?(h.cn) %>
+              <%= link_to '', unwatch_condors_path(h.cn), :class => 'icon-eye-close' %>
+            <% else %>
+              <%= link_to '', watch_condors_path(h.cn), :class => 'icon-eye-open' %>
+            <% end %>
+            <%= link_to '', start_condors_path(h.cn), :class => 'icon-play' %>
+            <%= link_to '', stop_condors_path(h.cn),:class => 'icon-stop' %>
+          </div>
+        </td>
+      </tr>
+<%end%>
+    <%end%>
+
   </tbody>
 </table>

@@ -7,6 +7,7 @@ class CondorsController < ApplicationController
   def index
     @hosts = Host.all
     @hrun= check_running()
+    @watched = load_file()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,16 +16,46 @@ class CondorsController < ApplicationController
   end
 
   def start
-  	puts runssh(params[:format], 'ls -allh')
-  	redirect_to condors_path
+  	@output = runssh(params[:format], 'ls -allh')
   end
 
   def stop
   	puts runssh(params[:format], 'ls -allh')
-  	redirect_to condors_path
+  end
+
+  def watch
+    watch_host(params[:format])
+    redirect_to condors_path
+  end
+
+  def unwatch
+    unwatch_host(params[:format])
+    redirect_to condors_path
   end
 
   private
+
+  def load_file()
+    to_ret = []
+    File.open('public/condorhosts').each_line do |line|
+      to_ret.push(line.strip)
+    end
+    to_ret
+  end
+
+  def watch_host(hostname)
+    File.open('public/condorhosts', 'a') do |file|
+      file.write hostname + "\n"
+    end
+  end
+
+  def unwatch_host(hostname)
+    tmp = Tempfile.new("extract")
+    puts hostname
+    File.open('public/condorhosts', 'r').each { |l| tmp << l unless l.chomp == hostname.chomp }
+    tmp.close
+    FileUtils.mv(tmp.path, 'public/condorhosts')
+  end
 
   def check_running()
     to_ret = []
@@ -34,6 +65,7 @@ class CondorsController < ApplicationController
     stdout.each_line do |line|
      to_ret.push(line.strip.split('.')[0])
     end
+
     to_ret
   end
 
@@ -50,7 +82,7 @@ class CondorsController < ApplicationController
   	rescue Exception => e
   		puts hostname + ": " + e.message
   	else
-  		puts output
+  		output
   	end
   	output
   end

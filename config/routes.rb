@@ -8,6 +8,8 @@ Sayri::Application.routes.draw do
     collection do
       get :start
       get :stop
+      get :watch
+      get :unwatch
     end
   end
   resources :sessions, only: [:new, :create, :destroy]

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     if user
       sign_in user
       if admin?
-        redirect_to groups_url
+        redirect_to users_url
       else
         redirect_to user
       end
