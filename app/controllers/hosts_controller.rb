@@ -4,11 +4,26 @@ class HostsController < ApplicationController
   # GET /hosts.json
   def index
     @hosts = Host.all
+    @watched = get_watched
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @hosts }
     end
+  end
+
+  def watch
+    Setting.condorhosts =  get_watched | [params[:hostname]]
+
+    redirect_to hosts_path
+  end
+
+  def unwatch
+    tmp = get_watched
+    tmp.delete(params[:hostname])
+    Setting.condorhosts = tmp
+
+    redirect_to hosts_path
   end
   
   # GET /hosts/1
@@ -81,4 +96,15 @@ class HostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+  def get_watched
+    if Setting.condorhosts
+      Setting.condorhosts
+    else
+      []
+    end
+  end
+
 end

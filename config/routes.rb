@@ -3,13 +3,17 @@ Sayri::Application.routes.draw do
   resources :users
   resources :groups
   resources :sudoers
-  resources :hosts
+  resources :hosts do
+    collection do
+      get :watch
+      get :unwatch
+    end
+  end
+  resources :settings
   resources :condors do
     collection do
       get :start
       get :stop
-      get :watch
-      get :unwatch
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
