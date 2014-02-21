@@ -50,9 +50,6 @@ Some system dependencies are required to run "bundle install". Like: gmake and o
 
 FreeBSD Specific:
 
-Remplace therubyracer in Gemfile with:
- gem 'therubyracer-freebsd', '0.11.1p2', :platforms => :ruby
-  
 Run bundle:
  $ sudo CONFIGURE_ARGS=”with-sqlite3-dir=/usr/local” bundle install
  
