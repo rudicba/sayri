@@ -19,12 +19,26 @@ It should work on ruby 1.9.x and 2.x, ruby 1.8.x is not supported.
 
 == HowTo
 
-=== Install Ruby using rvm
+=== Install RVM
 
  $ \curl -sSL https://get.rvm.io | sudo bash -s stable
- $ source /etc/profile
- $ sudo rvm install 2.1.0
  
+And a couple of lines to ~/.bash_profile:
+ [[ -s "$HOME/.profile" ]] && source "$HOME/.profile"
+ [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+ 
+Run: 
+ $ source ~/.rvm/scripts/rvm
+ $ rvm requirements
+ 
+==== Install Ruby
+ 
+ $ rvm install 2.1.0
+ $ rvm use 2.1.0
+ 
+Or set Ruby 2.1.0 as default for user:
+ $ rvm --default use 2.1.0
+
 === Clone Sayri
 
  $ cd /usr/local/www
@@ -36,9 +50,6 @@ Some system dependencies are required to run "bundle install". Like: gmake and o
 
 FreeBSD Specific:
 
-Remplace therubyracer in Gemfile with:
- gem 'therubyracer-freebsd', '0.11.1p2', :platforms => :ruby
-  
 Run bundle:
  $ sudo CONFIGURE_ARGS=”with-sqlite3-dir=/usr/local” bundle install
  
