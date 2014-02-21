@@ -1,0 +1,11 @@
+<legend>Service manager</legend>
+<%= form_tag "/settings/update", :method => :put do %>
+  <%= label_tag :srv_user, "Username" %>
+  <%= text_field_tag :srv_user, Setting.srv_user %>
+
+  <%= label_tag :srv_password, "Password" %>
+  <%= text_field_tag :srv_password, Setting.srv_password %>
+
+  <hr class="bs-docs-separator"></hr>
+  <%= submit_tag "Save" %>
+<% end %>
