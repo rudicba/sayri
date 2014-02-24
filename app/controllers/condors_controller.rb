@@ -16,11 +16,15 @@ class CondorsController < ApplicationController
   end
 
   def start
-  	@output = runssh(params[:format], 'ls -allh')
+  	out = runssh(params[:hostname], 'sudo /usr/sbin/service condor start')
+
+    redirect_to condors_path, notice: out
   end
 
   def stop
-  	puts runssh(params[:format], 'ls -allh')
+    out = runssh(params[:hostname], 'sudo /usr/sbin/service condor stop')
+
+    redirect_to condors_path, notice: out  
   end
 
   private
@@ -40,18 +44,17 @@ class CondorsController < ApplicationController
   def runssh(hostname, cmd)
   	begin
   		output = ""
-  		Net::SSH.start(hostname, Setting.srv_user, :password => Setting.srv_password) do |ssh|
+  		Net::SSH.start(hostname, Setting.srv_user, :password => Setting.srv_password, :timeout => 5) do |ssh|
   			output = ssh.exec!(cmd)
   	end
+    rescue Timeout::Error => e
+      output = hostname + ": " + e.message
   	rescue SocketError => e
-  		puts hostname + ": " + e.message
+  		output =  hostname + ": " + e.message
   	rescue Net::SSH::AuthenticationFailed  => e
-  		puts hostname + ": " + e.message
+  		output =  hostname + ": " + e.message
   	rescue Exception => e
-  		puts hostname + ": " + e.message
-  	else
-  		output
+  		output =  hostname + ": " + e.message
   	end
-  	output
   end
 end
