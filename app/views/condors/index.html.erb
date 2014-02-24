@@ -36,7 +36,7 @@
           </td>
         <% end %>
         
-        <td><%= w %></td>
+        <td><%= link_to w, host_path(w) %></td>
         <td class="span1"> 
           <div class="text-center">
             <%= link_to '', {:action => 'start', :hostname => w}, :class => 'icon-play' %>
