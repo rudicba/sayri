@@ -8,46 +8,57 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
+      <th>Status</th>
       <th>Condor</th>
       <th>Hostname</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-    <% if @hosts.empty? %>
+    <% if @watched.empty? %>
       <td colspan="3">
         No matching records found
       </td>
     <%end%>
 
-    <% @hosts.each do |h| %>
-    <% if @watched.include?(h.cn) %>
+    <% @watched.each do |w| %>
       <tr>
-        <% if @hrun.include?(h.cn) %>
-            <td class="span1">
-              <div class="text-center">
-                <button class="btn btn-mini btn-success disabled" type="button">Running</button>
-              </div>
-            </td>
-          <% else %>
-            <td class="span1">
-              <div class="text-center">
-                <button class="btn btn-mini btn-danger disabled" type="button">Stopped</button>
-              </div>
-            </td>
-          <% end %>
-        </div>
+        <% if @halive.include?(w) %>
+          <td class="span1">
+            <div class="text-center">
+              <button class="btn btn-mini btn-success disabled" type="button">On </button>
+            </div>
+          </td>
+        <% else %>
+          <td class="span1">
+            <div class="text-center">
+              <button class="btn btn-mini btn-danger disabled" type="button">Off</button>
+            </div>
+          </td>
+        <% end %>
 
-        <td><%= h.cn %></td>
+        <% if @hrun.include?(w) %>
+          <td class="span1">
+            <div class="text-center">
+              <button class="btn btn-mini btn-success disabled" type="button">Running</button>
+            </div>
+          </td>
+        <% else %>
+          <td class="span1">
+            <div class="text-center">
+              <button class="btn btn-mini btn-danger disabled" type="button">Stopped</button>
+            </div>
+          </td>
+        <% end %>
+        
+        <td><%= w %></td>
         <td class="span1"> 
           <div class="text-center">
-            <%= link_to '', {:action => 'start', :hostname => h.cn}, :class => 'icon-play' %>
-            <%= link_to '', {:action => 'stop', :hostname => h.cn}, :class => 'icon-stop' %>
+            <%= link_to '', {:action => 'start', :hostname => w}, :class => 'icon-play' %>
+            <%= link_to '', {:action => 'stop', :hostname => w}, :class => 'icon-stop' %>
           </div>
         </td>
       </tr>
-<%end%>
-    <%end%>
-
+    <% end %>
   </tbody>
 </table>

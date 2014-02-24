@@ -5,9 +5,14 @@ class CondorsController < ApplicationController
   # GET /condors
   # GET /condors.json
   def index
-    @hosts = Host.all
-    @hrun= check_running()
+    #watched: Host que estan siendo vigilados
     @watched = Setting.condorhosts
+
+    #hrun: Host corriendo condor
+    @hrun = check_running()
+
+    #halive: Host vivos
+    @halive = ping_hosts(@watched)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,6 +33,14 @@ class CondorsController < ApplicationController
   end
 
   private
+
+  def ping_hosts(hosts)
+    ret = []
+    hosts.each do |host|
+      ret << host if Net::Ping::TCP.new(host, timeout=1).ping?
+    end
+    ret
+  end
 
   def check_running()
     to_ret = []

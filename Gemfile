@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'thin'
 
 gem 'net-ssh'
+gem 'net-ping'
 gem "rails-settings-cached", "0.2.4"
 
 gem 'sqlite3'
