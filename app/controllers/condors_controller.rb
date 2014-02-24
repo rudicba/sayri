@@ -11,9 +11,6 @@ class CondorsController < ApplicationController
     #hrun: Host corriendo condor
     @hrun = check_running()
 
-    #halive: Host vivos
-    @halive = ping_hosts(@watched)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @hosts }

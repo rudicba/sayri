@@ -8,7 +8,6 @@
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th>Host</th>
       <th>Condor</th>
       <th>Hostname</th>
       <th>Actions</th>
@@ -23,20 +22,6 @@
 
     <% @watched.each do |w| %>
       <tr>
-        <% if @halive.include?(w) %>
-          <td class="span1">
-            <div class="text-center">
-              <button class="btn btn-mini btn-success disabled" type="button">On </button>
-            </div>
-          </td>
-        <% else %>
-          <td class="span1">
-            <div class="text-center">
-              <button class="btn btn-mini btn-danger disabled" type="button">Off</button>
-            </div>
-          </td>
-        <% end %>
-
         <% if @hrun.include?(w) %>
           <td class="span1">
             <div class="text-center">
