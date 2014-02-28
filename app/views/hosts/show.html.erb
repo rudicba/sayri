@@ -13,32 +13,19 @@
   		<td class ="muted span3">ipHostNumber:</td>
   		<td><%= @host.ipHostNumber %></td>
   	</tr>
-    <tr>
-        <td class ="muted">Ping:</td>
-        <td>
-            <% if @host.alive? %>
-                <button class="btn btn-mini btn-success disabled" type="button">Alive</button>
-            <% else %>
-                <button class="btn btn-mini btn-danger disabled" type="button">Dead</button>
-             <% end %>
-        </td>
-    </tr>
-    <tr>
-        <td class ="muted">SSH:</td>
-        <td>
-            <% if @host.ssh? %>
-                <button class="btn btn-mini btn-success disabled" type="button">Alive</button>
-            <% else %>
-                <button class="btn btn-mini btn-danger disabled" type="button">Dead</button>
-             <% end %>
-        </td>
-    </tr>
-    <tr>
-        <td class ="muted">SNMP:</td>
-        <td>
-           <%= @host.snmp %>
-        </td>
-    </tr>
+    <% @host.services.each do |name, value| %>
+        <tr>
+            <td class ="muted"><%= name.to_s %>:</td>
+            <td>
+                <% if value == 0 %>
+                    <button class="btn btn-mini btn-success disabled" type="button">Alive</button>
+                <% else %>
+                    <button class="btn btn-mini btn-danger disabled" type="button">Dead</button>
+                 <% end %>
+            </td>
+        </tr>
+    <% end %>
+
   </tbody>
 </table>
 <p class="text-right">
