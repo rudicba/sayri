@@ -1,33 +1,43 @@
+include SNMP
+
 class Host < ActiveLdap::Base
   ldap_mapping  :dn_attribute => 'cn', 
                 :prefix => 'ou=Hosts', 
                 :classes => ['ipHost','device']
 
-  def alive?
-    Net::Ping::TCP.new(self.ipHostNumber).ping?
-  end
+  def services
+    # prNames = oid del nombre de los servicios de snmpd
+    # prErrorFlag = sin contiene errores. Si es 0 no contiene errores
+    prNames = ObjectId.new("1.3.6.1.4.1.2021.2.1.2")
+    prErrorFlag = ObjectId.new("1.3.6.1.4.1.2021.2.1.100")
 
-  def ssh?
-    begin
-      TCPSocket.new(self.ipHostNumber, 'ssh')
-    rescue => e
-      return false
+    prTable_columns = [prNames, prErrorFlag]
+
+    # Consideramos el echo ok
+    services_errors = {:echo => 0}
+
+    # Si no responde el ping no hay necesidad de hacer nada.
+    if not Net::Ping::TCP.new(self.ipHostNumber).ping?
+      services_errors[:echo] = 1
+      return services_errors
     end
-    return true
-  end
 
-  def snmp
+    # Consideramos que snmp anda salvo que salte una excepcion
+    services_errors[:snmp] = 0
+    
     begin
       SNMP::Manager.open(:host => self.ipHostNumber) do |manager|
-        response = manager.get(["sysDescr.0"])
-        response.each_varbind do |vb|
-          mysplit = vb.value.to_s.split
-          return "#{mysplit[0]} #{mysplit[2]} #{mysplit[3]}"
+        manager.walk(prTable_columns) do |name, status|
+          services_errors[name.value.to_s.to_sym] = status.value.to_i
         end
       end
-    rescue => e
-        return e.message
+    rescue
+      # No se pudo consultar al snmpd, nada para hacer
+      services_errors[:snmp] = 1
     end
+
+    # Retornamos el diccionario con el estado de los servicios 
+    services_errors
   end
 
 end
